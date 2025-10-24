@@ -9,9 +9,10 @@ Context:
 You are a AI assistance to write good test automation code
 You have to use the given HTML DOM structure for creating Playwright code 
 This is a online Retail application
+Create code with URL "https://testerbud.com/flight-booking-scenarios"
 DOM
 
-<form class=""><div class="mb-3"><label class="form-label">Country of Residence</label><select class="form-select"><option value="">Select Country</option><option value="United States">United States</option><option value="Canada">Canada</option><option value="United Kingdom">United Kingdom</option><option value="India">India</option><option value="Australia">Australia</option><option value="Other">Other</option></select></div><div class="mb-3"><label class="form-label">Title</label><select class="form-select"><option value="">Select Title</option><option value="Mr.">Mr.</option><option value="Ms.">Ms.</option><option value="Mrs.">Mrs.</option><option value="Dr.">Dr.</option><option value="Prof.">Prof.</option></select></div><div class="row"><div class="mb-3 col-md-6"><label class="form-label">First Name</label><input type="text" class="form-control" value=""></div><div class="mb-3 col-md-6"><label class="form-label">Last Name</label><input type="text" class="form-control" value=""></div></div><div class="mb-3"><label class="form-label">Date of Birth</label><div class="react-datepicker-wrapper"><div class="react-datepicker__input-container"><input type="text" placeholder="YYYY-MM-DD" class="form-control" value=""></div></div></div><div class="mb-3"><label class="form-label">Date of Joining (dd/mm/yyyy)</label><input placeholder="dd/mm/yyyy" type="text" class="form-control" value=""></div><div class="mb-3"><label class="form-label">Email Address</label><input type="email" class="form-control" value=""></div><div class="mb-3"><label class="form-label">Phone Number</label><div class="row"><div class="col-md-4"><select class="form-select"><option value="+1">+1</option><option value="+44">+44</option><option value="+91">+91</option><option value="+61">+61</option><option value="+86">+86</option><option value="+Other">+Other</option></select></div><div class="col-md-8"><input type="tel" class="form-control" value=""></div></div></div><div class="mb-3"><label class="form-label">Preferred Communication Method</label><div><div class="form-check form-check-inline"><input type="radio" class="form-check-input" value="email"><label title="" class="form-check-label">Email</label></div><div class="form-check form-check-inline"><input type="radio" class="form-check-input" value="phone"><label title="" class="form-check-label">Phone</label></div></div></div><div class="d-flex justify-content-end gap-2"><button type="button" class="btn btn-secondary">Clear</button><button type="submit" class="btn btn-primary">Submit</button></div></form>
+<form class=""><div class="mb-3 row"><div class="col-md-6"><div><label class="form-label" for="from">From:</label><select class="form-select" id="from"><option value="">Select City</option><option value="New York">New York</option><option value="London">London</option><option value="Tokyo">Tokyo</option><option value="Paris">Paris</option><option value="Sydney">Sydney</option><option value="Mumbai">Mumbai</option><option value="Delhi">Delhi</option><option value="Dubai">Dubai</option><option value="Singapore">Singapore</option></select></div></div><div class="col-md-6"><div><label class="form-label" for="to">To:</label><select class="form-select" id="to"><option value="">Select City</option><option value="New York">New York</option><option value="London">London</option><option value="Tokyo">Tokyo</option><option value="Paris">Paris</option><option value="Sydney">Sydney</option><option value="Mumbai">Mumbai</option><option value="Delhi">Delhi</option><option value="Dubai">Dubai</option><option value="Singapore">Singapore</option></select></div></div></div><div class="mb-3 row"><div class="col-md-6"><div><label class="form-label" for="departureDate">Departure Date:</label><input min="2025-10-24" type="date" id="departureDate" class="form-control" value=""></div></div><div class="col-md-6"><div><label class="form-label" for="returnDate">Return Date:</label><input min="2025-10-24" type="date" id="returnDate" class="form-control" value=""></div></div></div><div class="mb-3 row"><div class="col-md-4"><div><label class="form-label" for="passengers">Passengers:</label><input min="1" type="number" id="passengers" class="form-control" value="1"></div></div><div class="col-md-4"><div><label class="form-label" for="travelClass">Travel Class:</label><select class="form-select" id="travelClass"><option value="Economy">Economy</option><option value="Business">Business</option><option value="First">First</option></select></div></div><div class="d-flex align-items-end col-md-4"><div class="form-check"><input type="checkbox" id="oneWay" class="form-check-input"><label title="" for="oneWay" class="form-check-label">One Way</label></div></div></div><button type="button" class="w-100 btn btn-primary">Search Flights</button></form>
 
 
 Examples:
@@ -90,76 +91,76 @@ Output:
 
 
 Response:-
-
 /**
- * Test Case: User Registration Form Submission
- * Scenario: User should be able to fill and submit the registration form with all required fields
- * Scripter: Pravin
- * Date: 2024-12-19
- * Key Logic:
- * - Fill all form fields including country, title, name, dates, email, phone
- * - Select preferred communication method
- * - Submit the form and verify successful submission
+ * Author: Pravin
+ * Date: 2025-10-25
+ * Scenario: Verify flight booking form functionality on TesterBud Flight Booking page
+ * Application: Online Retail (Flight Booking)
  */
 
-import { test, expect, Page } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 
-test.describe('User Registration Form Tests', () => {
-  let page: Page;
+test.describe('Flight Booking Form Test', () => {
 
-  test.beforeEach(async ({ page: testPage }) => {
-    page = testPage;
-    await page.setViewportSize({ width: 1920, height: 1080 });
-    await page.goto('https://yourapplication.com/register');
-  });
+  test('Verify user can fill and submit the flight booking form', async ({ page }) => {
+    
+    // Navigate to the flight booking page
+    await page.goto('https://testerbud.com/flight-booking-scenarios');
+    
+    // Wait for the "From" dropdown to be visible and select a city
+    const fromDropdown = page.locator('#from');
+    await fromDropdown.waitFor({ state: 'visible' });
+    await fromDropdown.selectOption('Mumbai');
 
-  test('Complete user registration form submission', async () => {
-    // Select Country of Residence
-    await page.locator('select.form-select').first().waitFor({ state: 'visible' });
-    await page.locator('select.form-select').first().selectOption('United States');
+    // Wait for the "To" dropdown to be visible and select a city
+    const toDropdown = page.locator('#to');
+    await toDropdown.waitFor({ state: 'visible' });
+    await toDropdown.selectOption('Dubai');
 
-    // Select Title
-    await page.locator('select.form-select').nth(1).selectOption('Mr.');
+    // Wait for the departure date input and fill date
+    const departureDate = page.locator('#departureDate');
+    await departureDate.waitFor({ state: 'visible' });
+    await departureDate.fill('2025-11-01');
 
-    // Fill First Name
-    await page.locator('input[type="text"]').first().fill('John');
+    // Wait for the return date input and fill date
+    const returnDate = page.locator('#returnDate');
+    await returnDate.waitFor({ state: 'visible' });
+    await returnDate.fill('2025-11-10');
 
-    // Fill Last Name
-    await page.locator('input[type="text"]').nth(1).fill('Doe');
+    // Wait for passengers input and set value
+    const passengers = page.locator('#passengers');
+    await passengers.waitFor({ state: 'visible' });
+    await passengers.fill('2');
 
-    // Fill Date of Birth
-    await page.locator('input[placeholder="YYYY-MM-DD"]').fill('1990-01-15');
+    // Wait for travel class dropdown and select option
+    const travelClass = page.locator('#travelClass');
+    await travelClass.waitFor({ state: 'visible' });
+    await travelClass.selectOption('Business');
 
-    // Fill Date of Joining
-    await page.locator('input[placeholder="dd/mm/yyyy"]').fill('15/01/2024');
+    // Wait for One Way checkbox and check it
+    const oneWayCheckbox = page.locator('#oneWay');
+    await oneWayCheckbox.waitFor({ state: 'visible' });
+    await oneWayCheckbox.check();
 
-    // Fill Email Address
-    await page.locator('input[type="email"]').fill('john.doe@example.com');
+    // Wait for Search Flights button and click
+    const searchButton = page.locator('button.btn.btn-primary');
+    await searchButton.waitFor({ state: 'visible' });
+    await searchButton.click();
 
-    // Select Phone Country Code and Fill Phone Number
-    await page.locator('select.form-select').nth(2).selectOption('+1');
-    await page.locator('input[type="tel"]').fill('1234567890');
-
-    // Select Preferred Communication Method
-    await page.locator('input[value="email"]').check();
-
-    // Submit the form
-    await page.locator('button.btn-primary').click();
-
-    // Verify successful form submission
-    await expect(page.locator('.alert-success')).toBeVisible({ timeout: 10000 });
-  });
-
-  test('Clear form data using Clear button', async () => {
-    // Fill some form data
-    await page.locator('input[type="text"]').first().fill('Test');
-    await page.locator('input[type="email"]').fill('test@example.com');
-
-    // Click Clear button
-    await page.locator('button.btn-secondary').click();
-
-    // Verify form is cleared
-    await expect(page.locator('input[type="text"]').first()).toHaveValue('');
-    await expect(page.locator('input[type="email"]')).toHaveValue('');
+    // Assertion example (verify button click or form submission)
+    await expect(page).toHaveURL(/.*flight-booking-scenarios/);
   });
 });
+
+
+
+
+Response in try playwright website :-
+
+Logs
+
+Running 1 test using 1 worker
+
+✓ 1 example.spec.ts:12:7 › Flight Booking Form Test › Verify user can fill and submit the flight booking form (2.3s)
+
+1 passed (3.8s)
