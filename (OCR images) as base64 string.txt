@@ -1,0 +1,61 @@
+{
+    "model": "meta-llama/llama-4-scout-17b-16e-instruct",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+            "type":"text",
+            "text":"Extract the text from the image and upper and lower case should be remain same "
+        },
+        {
+          "type": "image_url",
+          "image_url": { 
+            "url": "https://cf-assets.www.cloudflare.com/slt3lc6tev37/3pwMuJ55jpErAafgrWbyTr/e6c487ac6e4288dfe284db72b88ea3d1/captcha.png" 
+          }
+      
+    }
+  ]
+ 
+}
+],
+  "temperature": 1,
+  "max_completion_tokens": 500,
+  "top_p": 1
+}
+
+
+
+
+Response :--{
+    "id": "chatcmpl-bfc65f8d-55eb-4533-a282-8498c732f97a",
+    "object": "chat.completion",
+    "created": 1761333082,
+    "model": "meta-llama/llama-4-scout-17b-16e-instruct",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "√6T9 !BC D S √"
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "queue_time": 0.276471785,
+        "prompt_tokens": 465,
+        "prompt_time": 0.018022225,
+        "completion_tokens": 10,
+        "completion_time": 0.027885269,
+        "total_tokens": 475,
+        "total_time": 0.045907494
+    },
+    "usage_breakdown": null,
+    "system_fingerprint": "fp_79da0e0073",
+    "x_groq": {
+        "id": "req_01k8bt3xgyebnv0fvcyv0eyrab"
+    },
+    "service_tier": "on_demand"
+}

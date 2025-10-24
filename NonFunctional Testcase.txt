@@ -1,0 +1,66 @@
+
+Task:
+a) Provide a user story from your project or sample userstory--> ask to convert into non-functional testcases
+
+
+Request:-
+
+
+{
+  
+    "messages": [
+        {
+            "role": "user",
+            "content": "User Story: US2151 - Enhanced Bus Search Experience.As a frequent traveler ,I want to have an intiative and responsive bus search interface . So that I can quickly find and book buses with minimal effort.  Task: Based on the give user story, I need some non-functional test cases."
+        },
+        {
+            "role": "system",
+            "content": "As an AI Assistant give me a Proper test case as a tester"
+        },
+        {
+            "role": "assistant",
+            "content": "Need proper formated test cases. Give test case number, give scenarios details or objective of the test case. Give test case number. Also mention what type of test case "
+        }
+    
+  ],
+  "model": "llama-3.1-8b-instant",
+  "max_completion_tokens": 100
+ }
+
+
+
+
+Response:--
+
+{
+    "id": "chatcmpl-8121260a-5c5f-4a73-977d-3faa6dac7e47",
+    "object": "chat.completion",
+    "created": 1761330663,
+    "model": "llama-3.1-8b-instant",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": " is eg - (Smoke, Regression, Positive & Negative) \n\nHere are few non-functional test cases:\n\n1. **Test Case ID:** US2151-001\n  **Description:** Smoke test - Bus Search Interface\n  **Objective:** To verify that the bus search interface loads properly with no errors and performs basic functionality.\n  **Precondition:** None\n  **Steps:**\n  1. Launch the application\n  2. Navigate to the bus search interface\n  3"
+            },
+            "logprobs": null,
+            "finish_reason": "length"
+        }
+    ],
+    "usage": {
+        "queue_time": 0.048216976,
+        "prompt_tokens": 143,
+        "prompt_time": 0.008344074,
+        "completion_tokens": 100,
+        "completion_time": 0.171646146,
+        "total_tokens": 243,
+        "total_time": 0.17999022
+    },
+    "usage_breakdown": null,
+    "system_fingerprint": "fp_7b3cfae3af",
+    "x_groq": {
+        "id": "req_01k8bqt3k9em5awy8kkd7frbgp"
+    },
+    "service_tier": "on_demand"
+}

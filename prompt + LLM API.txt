@@ -1,0 +1,64 @@
+Task:
+Integrate the prompt to your API (using postman) and confirm the response (json)
+
+Objective: You can integrate prompt + LLM API
+
+Request:-
+
+{
+    "messages": [
+        {
+            "role": "user",
+            "content": "Create a simple java selenium code to verify the login functionality of redbus.in. Give only the code no additional text."
+        },
+        {
+            "role": "system",
+            "content": "As an AI Assistant give me a Proper test script as a automation tester"
+        },
+        {
+            "role": "assistant",
+            "content": "Need proper formated test script. Give test case number, give scenarios details or objective of the test case. Give test case number. Also mention what type of test case . example- API, or DB or load etc."
+        }
+    ],
+    
+  "model": "openai/gpt-oss-20b",
+  "max_completion_tokens": 1000
+ }
+
+
+
+Response:-
+
+{
+    "id": "chatcmpl-48945efd-c881-404c-b0a4-ab8493126896",
+    "object": "chat.completion",
+    "created": 1761330056,
+    "model": "openai/gpt-oss-20b",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "**Test Case #001 – Verify Login Functionality on RedBus (Functional Test)**  \n- **Objective:** Ensure that a user can successfully log in to RedBus with valid credentials.  \n- **Test Type:** Functional – UI/Automation  \n\n```java\nimport org.openqa.selenium.By;\nimport org.openqa.selenium.WebDriver;\nimport org.openqa.selenium.WebElement;\nimport org.openqa.selenium.chrome.ChromeDriver;\nimport org.openqa.selenium.support.ui.ExpectedConditions;\nimport org.openqa.selenium.support.ui.WebDriverWait;\n\npublic class RedBusLoginTest {\n\n    public static void main(String[] args) {\n        // Set up ChromeDriver (replace path with your local chromedriver path)\n        System.setProperty(\"webdriver.chrome.driver\", \"/path/to/chromedriver\");\n\n        WebDriver driver = new ChromeDriver();\n        WebDriverWait wait = new WebDriverWait(driver, 15);\n\n        try {\n            // 1. Open RedBus login page\n            driver.get(\"https://www.redbus.in/\");\n\n            // 2. Click on the login button (if available directly on homepage)\n            // If login button is not visible, use the 'Login' link in the top-right corner\n            By loginLink = By.xpath(\"//a[contains(@href,'login') and contains(@class,'header-link')]\");\n            wait.until(ExpectedConditions.elementToBeClickable(loginLink)).click();\n\n            // 3. Wait for login modal or page to load\n            By emailField = By.id(\"login-mobile-no\");\n            wait.until(ExpectedConditions.visibilityOfElementLocated(emailField));\n\n            // 4. Enter valid phone number (use a test number that you have registered)\n            WebElement emailInput = driver.findElement(emailField);\n            emailInput.clear();\n            emailInput.sendKeys(\"1234567890\"); // replace with valid test phone number\n\n            // 5. Click 'Continue' to go to OTP screen\n            By continueBtn = By.id(\"login-button\");\n            driver.findElement(continueBtn).click();\n\n            // 6. Wait for OTP input (you need to supply the OTP manually or via test helper)\n            By otpField = By.id(\"login-otp\");\n            wait.until(ExpectedConditions.visibilityOfElementLocated(otpField));\n\n            // 7. Enter OTP (replace with the actual OTP received during test)\n            WebElement otpInput = driver.findElement(otpField);\n            otpInput.clear();\n            otpInput.sendKeys(\"123456\"); // replace with valid OTP\n\n            // 8. Click 'Login' button after OTP\n            By otpLoginBtn = By.id(\"otp-login-button\");\n            driver.findElement(otpLoginBtn).click();\n\n            // 9. Verify successful login by checking the presence of user profile icon or logout link\n            By profileIcon = By.xpath(\"//a[contains(@href,'profile')]\");\n            wait.until(ExpectedConditions.visibilityOfElementLocated(profileIcon));\n\n            System.out.println(\"Login test passed: User profile icon displayed.\");\n\n        } catch (Exception e) {\n            System.err.println(\"Login test failed: \" + e.getMessage());\n        } finally {\n            // Close the browser\n            driver.quit();\n        }\n    }\n}\n```\n\n**Note:**  \n- Replace `\"/path/to/chromedriver\"` with the actual path to your ChromeDriver executable.  \n- Replace `\"1234567890\"` with a valid test phone number registered on RedBus.  \n- Replace `\"123456\"` with the OTP",
+                "reasoning": "User requests a simple Java Selenium code to verify login functionality of redbus.in, but they specifically want a proper test script as automation tester: need test case number, scenarios details or objective, mention test case type. They said earlier \"Give only the code no additional text.\" But new instruction: \"Need proper formated test script. Give test case number, give scenarios details or objective of the test case. Give test case number. Also mention what type of test case . example- API, or DB or load etc.\" So we must provide a test script, but also include test case number and details, and mention test case type. But earlier instruction says give only the code no additional text. There's a conflict: The user now explicitly wants test case number, objective, test case type. That is additional text. We must follow the most recent instruction. The user specifically asks to give proper formatted test script, with test case number, objective, type. That is not \"only the code\". So we need to comply with this new instruction, ignoring previous \"no additional text\". The final answer should contain the code plus those details. We should format with code block and text before code. Should we include test case number? Provide a sample. E.g.:\n\nTest Case #1: Verify Login functionality on RedBus\nObjective: ...\nTest Type: Functional\nScript: (Java Selenium code)\n\nWe must keep the code. Provide as per instructions.\n\nLet's produce."
+            },
+            "logprobs": null,
+            "finish_reason": "length"
+        }
+    ],
+    "usage": {
+        "queue_time": 0.055334981,
+        "prompt_tokens": 163,
+        "prompt_time": 0.007903189,
+        "completion_tokens": 1000,
+        "completion_time": 0.982463281,
+        "total_tokens": 1163,
+        "total_time": 0.99036647
+    },
+    "usage_breakdown": null,
+    "system_fingerprint": "fp_c5a89987dc",
+    "x_groq": {
+        "id": "req_01k8bq7j7bef9r28x81qhef2nj"
+    },
+    "service_tier": "on_demand"
+}

@@ -1,0 +1,11 @@
+b) Confirmation of the audio (recorded content of your voice) converted into correct text
+
+
+Response:
+
+{
+    "text": " Hello. I am fine.",
+    "x_groq": {
+        "id": "req_01k8br0ymeewxvp2e4hnzegr8q"
+    }
+}

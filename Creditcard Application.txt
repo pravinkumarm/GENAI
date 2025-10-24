@@ -1,0 +1,73 @@
+Task:
+Homework Assignment 3 & 4:
+
+Generate test data for credit card applications for different types of cards and conditions
+
+Notes:
+
+- Use ICE POT framework
+- Integrate with API to validate the response
+
+Request:-
+
+{
+  "messages": [
+    {
+      "role": "user",
+      "content":[{
+        "type": "text",
+        "text": "Generate 20 sample test data for credit card applications with these requirements:\n\n- Card users should be South Indian and Norwegian\n- Date of birth should be MASKED (format: xx-xx-xxxx)\n- Include parameters: Name, Age, DOB, City, Country, Card number\n- Total parameters should not exceed 10\n- Format the data properly in rows with headings\n- Include S.No, creation date, test data version, and created by Pravin\n\nExample FORMAT:\nName: pravin, Age: 39, DOB: xx-xx-xxx4, Sex: M, Card number: 234324-45427545-xxxx"
+      }]
+    },
+    {
+      "role": "system",
+      "content":[{
+        "type": "text",
+        "text": "You are an AI assistant and a senior software tester with experience in testing credit card applications."
+      }]
+    },
+      {
+            "role": "assistant",
+            "content": "\n\nOutPut:Give the results in rows and parameters,-Include s.No,-Include heading,-Include creation date,-Include test data version,-Include test data created by as PRAVIN"
+        }
+  ],
+  "model": "openai/gpt-oss-20b",
+  "max_completion_tokens": 21222
+ }
+
+
+Response :
+
+{
+    "id": "chatcmpl-80225b5c-2cc2-45e3-ada6-6fd2fd49f229",
+    "object": "chat.completion",
+    "created": 1761329727,
+    "model": "openai/gpt-oss-20b",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "**Test Data – Credit Card Application (Version 1.0)**  \n\n| S.No | Name                     | Age | DOB       | City           | Country | Card number          | Creation Date | Test Data Version | Created By |\n|------|--------------------------|-----|-----------|----------------|---------|----------------------|---------------|-------------------|------------|\n| 1    | Karthik Subramaniam      | 28  | xx-xx-xxxx| Chennai        | India   | 4532-1098-7654-3210 | 24-10-2025    | 1.0               | PRAVIN     |\n| 2    | Astrid Johansen          | 34  | xx-xx-xxxx| Oslo           | Norway  | 3789-4521-1234-5678 | 24-10-2025    | 1.0               | PRAVIN     |\n| 3    | Sangeetha Pillai         | 45  | xx-xx-xxxx| Bangalore      | India   | 4921-8765-4321-0987 | 24-10-2025    | 1.0               | PRAVIN     |\n| 4    | Erik Hansen              | 29  | xx-xx-xxxx| Bergen         | Norway  | 6011-2345-6789-0123 | 24-10-2025    | 1.0               | PRAVIN     |\n| 5    | Meera Nair                | 52  | xx-xx-xxxx| Hyderabad      | India   | 4532-9876-5432-1098 | 24-10-2025    | 1.0               | PRAVIN     |\n| 6    | Ingrid Olsen             | 41  | xx-xx-xxxx| Trondheim      | Norway  | 3789-0123-4567-8901 | 24-10-2025    | 1.0               | PRAVIN     |\n| 7    | Arjun Reddy              | 37  | xx-xx-xxxx| Cochin         | India   | 4921-6543-2109-8765 | 24-10-2025    | 1.0               | PRAVIN     |\n| 8    | Lars Berg                | 30  | xx-xx-xxxx| Stavanger      | Norway  | 6011-3456-7890-1234 | 24-10-2025    | 1.0               | PRAVIN     |\n| 9    | Priya Menon              | 24  | xx-xx-xxxx| Mysore         | India   | 4532-3210-9876-5432 | 24-10-2025    | 1.0               | PRAVIN     |\n| 10   | Karina Berglund          | 47  | xx-xx-xxxx| Kristiansand   | Norway  | 3789-8901-2345-6789 | 24-10-2025    | 1.0               | PRAVIN     |\n| 11   | Sanjay Gupta             | 59  | xx-xx-xxxx| Thiruvananthapuram | India | 4921-1098-7654-3210 | 24-10-2025 | 1.0               | PRAVIN     |\n| 12   | Morten Lund              | 36  | xx-xx-xxxx| Drammen        | Norway  | 6011-5678-1234-9876 | 24-10-2025    | 1.0               | PRAVIN     |\n| 13   | Lakshmi Rao              | 31  | xx-xx-xxxx| Vellore        | India   | 4532-4321-0987-6543 | 24-10-2025    | 1.0               | PRAVIN     |\n| 14   | Nina Dahl                | 42  | xx-xx-xxxx| Ålesund        | Norway  | 3789-3456-7890-0123 | 24-10-2025    | 1.0               | PRAVIN     |\n| 15   | Ramesh Kumar             | 27  | xx-xx-xxxx| Salem          | India   | 4921-8765-4321-0987 | 24-10-2025    | 1.0               | PRAVIN     |\n| 16   | Jonas Berg               | 33  | xx-xx-xxxx| Ås             | Norway  | 6011-1234-5678-9012 | 24-10-2025    | 1.0               | PRAVIN     |\n| 17   | Deepa Iyer               | 54  | xx-xx-xxxx| Kanyakumari    | India   | 4532-2109-8765-4321 | 24-10-2025    | 1.0               | PRAVIN     |\n| 18   | Solveig Kristiansen      | 39  | xx-xx-xxxx| Bodø           | Norway  | 3789-0123-4567-8901 | 24-10-2025    | 1.0               | PRAVIN     |\n| 19   | Aravind Ramasamy         | 46  | xx-xx-xxxx| Tirunelveli    | India   | 4921-6543-2109-8765 | 24-10-2025    | 1.0               | PRAVIN     |\n| 20   | Anja Løkken              | 25  | xx-xx-xxxx| Hamar          | Norway  | 6011-3456-7890-1234 | 24-10-2025    | 1.0               | PRAVIN     |",
+                "reasoning": "We need 20 sample test data rows for credit card applications. Requirements:\n\n- Card users should be South Indian and Norwegian (so each row should have either South Indian or Norwegian user? Probably mix both? Likely each row includes a user who could be from South India or Norway. We could alternate or include both.\n\n- DOB should be masked: format xx-xx-xxxx. The example shows DOB: xx-xx-xxx4, but we can do xx-xx-xxxx. Provide 4 digits year masked.\n\n- Include parameters: Name, Age, DOB, City, Country, Card number. Total parameters should not exceed 10. Those 6 parameters are fine. We also need s.No, creation date, test data version, created by Pravin. That would bring total to 10: s.No, Name, Age, DOB, City, Country, Card number, creation date, test data version, created by.\n\n- Format properly in rows with headings. So we need a header row: S.No | Name | Age | DOB | City | Country | Card number | Creation Date | Test Data Version | Created By.\n\n- Provide 20 rows.\n\n- Creation date: same for all rows? Possibly current date or same. We'll use today's date e.g. 24-10-2025. Test Data Version: maybe \"1.0\". Created By: PRAVIN.\n\n- Card number: sample but probably 16-digit numeric. Format maybe 1234-5678-9012-3456.\n\nWe need to include both South Indian and Norwegian. We can alternate: row 1 South Indian, row 2 Norwegian, etc.\n\nName: typical South Indian names and Norwegian names.\n\nCity: South Indian cities like Chennai, Bangalore, Hyderabad, etc. Norwegian cities like Oslo, Bergen, Trondheim.\n\nCountry: India (South India) or Norway.\n\nAge: 18-70.\n\nDOB: xx-xx-xxxx (year masked). Use 4-digit year like 1990 but mask as xxxx? Actually masked meaning each digit replaced with x? The example shows xx-xx-xxx4, meaning year partially masked but last digit shown. But requirement: DOB should be MASKED (format: xx-xx-xxxx). So maybe full year masked with x's: xx-xx-xxxx. We'll keep that.\n\nLet's produce table. We'll list 20 rows.\n\nWe'll use creation date 24-10-2025. Test data version 1.0.\n\nMake sure to not exceed 10 parameters: we have exactly 10.\n\nLet's craft. Ensure formatting. Use pipe separated? Or comma separated? Example format shows comma separated. We'll produce comma separated lines with headings.\n\nHeading row: S.No, Name, Age, DOB, City, Country, Card number, Creation Date, Test Data Version, Created By.\n\nThen rows. Use 20 rows.\n\nLet's produce."
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "queue_time": 0.050251888,
+        "prompt_tokens": 268,
+        "prompt_time": 0.013226081,
+        "completion_tokens": 1884,
+        "completion_time": 1.843768786,
+        "total_tokens": 2152,
+        "total_time": 1.856994867
+    },
+    "usage_breakdown": null,
+    "system_fingerprint": "fp_c5a89987dc",
+    "x_groq": {
+        "id": "req_01k8bpxg6pfjqvp0kg4qpyhmtx"
+    },
+    "service_tier": "on_demand"
+}
