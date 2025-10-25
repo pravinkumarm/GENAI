@@ -1,0 +1,55 @@
+import { GenerateRequest } from './schemas'
+
+// Backwards-compatible system prompt used by the existing Groq client.
+export const SYSTEM_PROMPT = `You are a senior QA engineer. Analyze the provided user story and produce structured test cases. Return ONLY the JSON object matching the schema requested by the user; do not include any extra text.`
+
+/**
+ * Build a prompt using the ICE POT framework:
+ * I - Instruction
+ * C - Context
+ * E - Example
+ * P - Persona
+ * O - Output
+ * T - Tone
+ */
+export function buildPrompt(request: GenerateRequest): string {
+  const { storyTitle, acceptanceCriteria, description, additionalInfo } = request
+
+  const instruction = `Instruction:\nYou are asked to analyze the provided user story and generate a set of structured test cases that fully exercise the behavior described. Return ONLY valid JSON that exactly matches the schema specified in the Output section. Do not include any explanatory text, markdown, or extra fields.`
+
+  const contextLines = [`Context:`,
+    `Story Title: ${storyTitle}`,
+    `Acceptance Criteria:\n${acceptanceCriteria}`
+  ]
+
+  if (description) contextLines.push(`Description:\n${description}`)
+  if (additionalInfo) contextLines.push(`Additional Information:\n${additionalInfo}`)
+
+  const context = contextLines.join('\n\n')
+
+  const example = `Example:\nInput (summary): \nStory Title: Login with email\nAcceptance Criteria: Users can log in with valid email and password. Error shown for invalid credentials.\n\nExpected JSON Output (example):\n{\n  "cases": [\n    {\n      "id": "TC-001",\n      "title": "Successful login with valid credentials",\n      "steps": ["Go to login page", "Enter valid email", "Enter valid password", "Click Login"],\n      "testData": "email: user@example.com, password: Passw0rd!",\n      "expectedResult": "User is redirected to the dashboard",\n      "category": "Positive"\n    },\n    {\n      "id": "TC-002",\n      "title": "Login fails with wrong password",\n      "steps": ["Go to login page", "Enter valid email", "Enter invalid password", "Click Login"],\n      "expectedResult": "Error message displayed: 'Invalid credentials'",\n      "category": "Negative"\n    }\n  ],\n  "model": "gpt-4.1",\n  "promptTokens": 0,\n  "completionTokens": 0\n}`
+
+  const persona = `Persona:\nYou are a senior QA engineer experienced in exploratory and structured test design. Focus on clarity, measurability, and coverage across Positive, Negative, Edge, Authorization, and Non-Functional scenarios.`
+
+  const output = `Output:\nReturn a single JSON object with the following schema exactly (types explained for clarity):\n{\n  \"cases\": [\n    {\n      \"id\": \"TC-001\",\n      \"title\": \"string\",\n      \"steps\": [\"string\", \"...\"],\n      \"testData\": \"string (optional)\",\n      \"expectedResult\": \"string\",\n      \"category\": \"string (e.g., Positive|Negative|Edge|Authorization|Non-Functional)\"\n    }\n  ],\n  \"model\": \"string (optional)\",\n  \"promptTokens\": 0,\n  \"completionTokens\": 0\n}`
+
+  const tone = `Tone:\nBe concise, precise, and use imperative verbs for steps (e.g., \"Click Login\", \"Enter email\"). Avoid filler language.`
+
+  // Assemble ICE POT prompt
+  const prompt = [
+    instruction,
+    '\n',
+    context,
+    '\n',
+    example,
+    '\n',
+    persona,
+    '\n',
+    output,
+    '\n',
+    tone,
+    '\n\nCRITICAL: Return ONLY the JSON object matching the Output schema above. Do NOT add any extra text.'
+  ].join('\n')
+
+  return prompt
+}
