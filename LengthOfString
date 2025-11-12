@@ -1,0 +1,23 @@
+import java.io.*;
+
+class Geeks {
+    public static void main(String[] args) {
+
+        String s1 = "abc";
+        String s2 = "xyz";
+
+        // storing the length of both the
+        // strings in int variables
+        int len1 = s1.length();
+        int len2 = s2.length();
+
+        // checking whether the length of
+        // the strings is equal or not
+        if (len1 == len2) {
+            System.out.println("The length of both the strings"+ " are equal and is "+ len1);
+        }
+        else {
+            System.out.println("The length of both the strings"+ " are not equal");
+        }
+    }
+}
