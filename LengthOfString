@@ -21,3 +21,23 @@ class Geeks {
         }
     }
 }
+
+=================================
+
+class StringUtils {
+    static getLength(input: string): number {
+        if (typeof input !== 'string') {
+            throw new Error('Input must be a string');
+        }
+        return input.length;
+    }
+    
+    static getLengthSafe(input: unknown): number {
+        return typeof input === 'string' ? input.length : 0;
+    }
+}
+
+// Usage
+const testString: string = "TypeScript Rocks!";
+console.log(StringUtils.getLength(testString)); // Output: 17
+console.log(StringUtils.getLengthSafe(12345)); // Output: 0
